@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>HELLO</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <!--    <link rel="stylesheet" href="/materialize.css">-->
+    <script src="https://kit.fontawesome.com/2cc411afa6.js"></script>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<div th:replace="fragment/header :: header"></div>
+
+<!-- -->
+
+<div class="container position-relative p-l-g">
+    <div class="col-lg-8 col-md-8 col-sm-12 d-flex justify-content-center flex-column m-auto ">
+        <div class="row m-5" style="margin: 18px 48px 14px !important;">
+            <a href="/"><h2 th:text="${isAdd} ? #{add-article} : #{update-article} "></h2></a>
+        </div>
+        <div class="row  m-2">
+            <button class="btn btn-outline-primary w-100" onclick="location.href='/'" th:text="#{back-home}">
+            </button>
+        </div>
+        <div class="row text-center m-2">
+            <form class="form-group" th:action="${isAdd} ? '/add' : '/update' " method="post" th:object="${article}"
+                  enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="form-group d-flex mb-0">
+                        <label class="w-25" th:text="#{id} + ': ' "></label>
+                        <input class="w-75 form-control" placeholder="ID" th:field="*{id}" type="text">
+                    </div>
+                    <p style="display: none" class="mb-0 text-danger">This field must be input more than 3 characters
+                        and less than 12 characters </p>
+                </div>
+                <div class="form-group ">
+                    <div class="form-group d-flex mb-0">
+                        <label class="w-25 text-right" th:text="#{title} + ': '"></label>
+                        <input class="w-75 form-control mb-0" placeholder="Title of The Book" type="text"
+                               th:field="*{title}">
+                    </div>
+                    <p th:if="${#fields.hasErrors('title')}" class="mb-0 text-danger">This field must be input more than
+                        3 characters and less than 12
+                        characters </p>
+                </div>
+
+                <div class="form-group ">
+                    <div class="d-flex form-group mb-0">
+                        <label class="w-25" th:text="#{desc} + ': '"></label>
+                        <input class="w-75 form-control " type="text" placeholder="Description of The Book"
+                               th:field="*{author}">
+                    </div>
+                    <p th:if="${#fields.hasErrors('author')}" class="mb-0 text-danger">This field must be input more
+                        than 3 characters and less than 12
+                        characters </p>
+                </div>
+                <div class="form-group">
+                    <div class="d-flex form-group mb-0">
+                        <label class="w-25" th:text="#{author} + ': '"></label>
+                        <input class="w-75 form-control" placeholder="Author of The Book" type="text"
+                               th:field="*{description}">
+                    </div>
+                    <p th:if="${#fields.hasErrors('description')}" class="mb-0 text-danger">This field must be input
+                        more than 3 characters and less than 60 characters </p>
+                </div>
+                <div class="form-group w-100 d-flex" >
+                    <label class="w-25">Category: </label>
+                    <select class="w-75" th:field="${article.category.cate_id}">
+                        <option th:each ="cate: ${cates}" th:object="${cate}"  th:text="*{cate_name}"
+                                th:value="*{cate_id}"></option>
+                    </select>
+                </div>
+                <div class="h-auto w-100">
+                    <img class="mr-3 p-2 image1" width="250px" height="250px" th:style="${isAdd} ? 'display:none' : ''"
+                         th:src="${isAdd} ? '/image/00.jpg' : '/image/' + *{thumbnail}  ">
+                </div>
+                <input type="hidden" th:field="*{thumbnail}">
+                <div class="form-group">
+                    <input class="btn btn-dark w-100" type="file" name="image" th:value="'/image/'+*{thumbnail}">
+                </div>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" th:text="${isAdd} ? #{add} : #{update} ">
+                    Save
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+
+<div th:replace="fragment/footer :: footer"></div>
+
+<!-- -->
+
+
+<script src="/jquery-3.3.1.slim.min.js"></script>
+<script src="/popper.min.js"></script>
+<script src="/bootstrap.min.js"></script>
+
+</body>
+</html>

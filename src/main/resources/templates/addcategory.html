@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HELLO</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <!--    <link rel="stylesheet" href="/materialize.css">-->
+    <script src="https://kit.fontawesome.com/2cc411afa6.js"></script>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<div th:replace="fragment/header :: header"></div>
+
+<!-- -->
+<div class="container">
+    <div class="row m-5" style="margin: 18px 48px 14px !important;">
+        <a href="#"><h2
+                th:text="${isAdd} == 2 ? #{display-category} : (${isAdd} ? #{add-category} : #{update-article} )"></h2>
+        </a>
+    </div>
+    <div class="row m-2" style="margin-bottom: 34px !important;">
+        <button class="btn btn-outline-primary w-100" onclick="location.href='/cate'"
+                th:text="#{back-category}"></button>
+    </div>
+    <div class="row">
+        <form class="form-group" th:action="${isAdd} ? '/cate/add' : '/cate/update' " method="post" th:object="${cate}"
+              enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="form-group d-flex mb-0">
+                    <label class="w-25" th:text="#{category-name} + ': ' "></label>
+                    <input style="display: none" class="w-75 form-control" th:placeholder="#{category-name}"
+                           th:field="*{cate_id}" type="text">
+                    <input th:style="${isDetail} ? 'pointer-events: none' : '' " class="w-75 form-control"
+                           th:placeholder="#{category-name}" th:field="*{cate_name}" type="text">
+                </div>
+                <p th:if="${#fields.hasErrors('cate_name')}" class="mb-0 text-danger d-flex justify-content-center">This field must be input more than
+                    3 characters and less than 12 characters </p>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" th:style="${isAdd} == 2 ? 'display: none' : '' "
+                    type="submit" th:text="${isAdd} ? #{add} : #{update} ">Save
+            </button>
+        </form>
+    </div>
+</div>
+<!-- FOOTER -->
+
+<div th:replace="fragment/footer :: footer"></div>
+
+<!-- -->
+
+<script src="/jquery-3.3.1.slim.min.js"></script>
+<script src="/popper.min.js"></script>
+<script src="/bootstrap.min.js"></script>
+
+
+</body>
+</html>

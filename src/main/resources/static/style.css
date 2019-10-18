@@ -1,0 +1,102 @@
+html {
+
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #D3E8FA;
+    position: relative;
+    min-height: 100vh;
+}
+
+.p-l-lg {
+    padding-bottom: 4rem !important;
+}
+
+.row {
+    justify-content: center;
+}
+
+label {
+    width: 25%;
+    padding: 6px;
+    text-align: right;
+}
+
+input {
+    width: 75%;
+    padding: 6px;
+}
+
+form {
+    width: 100%;
+}
+
+.navbar {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+i {
+    padding-right: 12px;
+    font-size: 16px;
+}
+
+a {
+    color: #1b1e21;
+    font-size: 16px;
+}
+
+li {
+
+}
+
+#navbar, .footer {
+    background-color: #97C9FC !important;
+    height: 40px;
+    padding: 28px 15% 28px 15%;
+}
+
+.footer .container p {
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.image {
+    border-radius: 50%;
+}
+
+.image1 {
+    border-radius: 75%;
+}
+
+.ml-1 {
+    margin-left: 6px;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.active{
+    background-color: red;
+}
+

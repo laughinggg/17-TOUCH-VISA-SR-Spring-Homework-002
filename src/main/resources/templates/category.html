@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HELLO</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://kit.fontawesome.com/2cc411afa6.js"></script>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<div th:replace="fragment/header :: header"></div>
+
+<!-- -->
+
+<div class="container">
+    <div class="row m-5" style="margin: 18px 48px 14px !important;">
+        <a href="#"><h2 th:text="#{category}"></h2></a>
+    </div>
+    <button class="btn btn-outline-info w-100 m-2" type="submit" onclick="location.href='/cate/add'"
+            th:text="#{add-new-category}"></button>
+    <div class="row">
+        <ul class="list-unstyled w-100">
+            <li class="media border border-bottom border-white border-top-0 border-left-0 border-right-0 p-2 m-2"
+                th:each="cate: ${cates}" th:object="${cate}">
+                <div class="media-body w-75" style="margin-left: 12px ">
+                    <div class="w-100 d-flex">
+                        <div class="w-25 float-left text-danger" th:text="#{category-id}">Category ID:</div>
+                        <div class="w-75"><h5 class="mt-0 mb-1 " th:text="*{cate_id}"></h5></div>
+                    </div>
+                    <div class="w-100 d-flex">
+                        <div class="w-25 float-left text-danger" th:text="#{category-name}">Category Name:</div>
+                        <div class="w-75"><h5 class="mt-0 mb-1 " th:text="*{cate_name}"></h5></div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-center w-25">
+                    <a class="btn" th:href="@{/cate/detail/{id}(id=*{cate_id})}"><i
+                            class="fas fa-eye fa-2x text-dark"></i></a>
+                    <a class="btn" th:href="@{/cate/update/{id}(id=*{cate_id})}"><i
+                            class="fas fa-edit fa-2x text-primary"></i></a>
+                    <a class="btn" th:href="@{/cate/delete/{id}(id=*{cate_id})}"><i
+                            class="fas fa-trash-alt fa-2x text-danger"></i></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- FOOTER -->
+
+<div th:replace="fragment/footer :: footer"></div>
+
+<!-- -->
+<script src="/jquery-3.3.1.slim.min.js"></script>
+<script src="/popper.min.js"></script>
+<script src="/bootstrap.min.js"></script>
+
+
+</body>
+</html>
