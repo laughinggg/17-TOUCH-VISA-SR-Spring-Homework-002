@@ -55,8 +55,7 @@
             <ul class="list-unstyled w-100">
                 <li class="media border border-bottom border-white border-top-0 border-left-0 border-right-0 p-2 m-2"
                     th:each="article: ${articles}" th:object="${article}">
-                    <img class="mr-3 p-2 image" width="150px" height="150px" th:src="'/image/' + *{thumbnail}"
-                         alt="Generic placeholder image">
+                    <img th:src="'/img/0.jpg'"  class="mr-3 p-2 image" width="150px" height="150px" alt="Generic placeholder image">
                     <div class="media-body w-75 float-left">
                         <h5 class="mt-0 mb-1 " th:text="#{title} + ': ' + *{title}"></h5>
                         <p class="mt-0 mb-1 " th:text="#{id}  +  ': ' + *{id}"></p>

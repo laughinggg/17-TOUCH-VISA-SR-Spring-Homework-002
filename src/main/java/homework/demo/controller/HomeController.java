@@ -6,7 +6,6 @@ import homework.demo.model.filter.ArticleFilter;
 import homework.demo.service.article.ArticleService;
 import homework.demo.service.category.ArticleCategoryService;
 import homework.demo.utility.Pagination;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,9 +43,7 @@ public class HomeController implements WebMvcConfigurer {
         m.addAttribute("articles", articleService.findAllFilter(filter, pages));
         m.addAttribute("filter", filter);
         m.addAttribute("pages", pages);
-
         m.addAttribute("cates", articleCategoryService.getAllCategories());
-
         return "index";
     }
 
@@ -60,7 +57,7 @@ public class HomeController implements WebMvcConfigurer {
     }
 
     @PostMapping("/add")
-    public String insertArticle(@Valid @ModelAttribute Article article, BindingResult bindingresult, Model m, @RequestParam("image") MultipartFile file, @RequestParam(value = "category_id", required = false) Category category){
+    public String insertArticle(@Valid @ModelAttribute Article article, BindingResult bindingresult, Model m, @RequestParam("img") MultipartFile file, @RequestParam(value = "category_id", required = false) Category category){
         if (bindingresult.hasErrors()) {
             m.addAttribute("isAdd", true);
             m.addAttribute("article", article);
@@ -100,7 +97,7 @@ public class HomeController implements WebMvcConfigurer {
     }
 
     @PostMapping("/update")
-    public String updateArticle(@Valid @ModelAttribute Article article, BindingResult bindingresult, Model m, @RequestParam("image") MultipartFile file) {
+    public String updateArticle(@Valid @ModelAttribute Article article, BindingResult bindingresult, Model m, @RequestParam("img") MultipartFile file) {
         if (bindingresult.hasErrors()) {
             m.addAttribute("isAdd", false);
             m.addAttribute("article", article);

@@ -14,10 +14,12 @@ public class FileUploadController implements WebMvcConfigurer {
     String path;
     @Value("${file.image.server}")
     String server;
+    @Value("${file.project.path}")
+    String projectPath;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(path + "**").addResourceLocations("file:" + server);
+        registry.addResourceHandler("/img/**").addResourceLocations("file:" + System.getProperty("user.dir") + projectPath);
     }
 
 
